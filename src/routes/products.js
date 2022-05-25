@@ -16,14 +16,14 @@ router.get('/products', (req, res) => {
     .catch((e) => res.json({message: e}));
  });
  //READ //Leer por ID
-router.get('/products:id', (req, res) => {
+router.get('/products/:id', (req, res) => {
     const{id} = req.params;
     productSchema.findOne({id:id})
     .then((d) => res.json(d))
     .catch((e) => res.json({message: e}));
  });
   //UPDATE //Actualizar
-router.get('/products:id', (req, res) => {
+router.put('/products/:id', (req, res) => {
     const{id} = req.params;
     const{nombre, marca, descripcion, precio, stock} = req.body;
     productSchema.updateOne({id:id}, {$set: {nombre, marca, descripcion, precio, stock}})
@@ -31,7 +31,7 @@ router.get('/products:id', (req, res) => {
     .catch((e) => res.json({message: e}));
  });
    //DELETE //Eliminar
-router.get('/products:id', (req, res) => {
+router.delete('/products/:id', (req, res) => {
     const{id} = req.params;
     productSchema.remove({id:id})
     .then((d) => res.json(d))
